@@ -74,8 +74,8 @@ frontend
 ├── gulpfile.js           # Gulp tasks
 ├── package.json          # NPM dependencies
 ├── src
-│   ├── app.js            # Express application definition
-│   ├── client.js         # Client-side (browser) entry point
+│   ├── app.js            # * Express application definition
+│   ├── client.js         # * Client-side (browser) entry point
 │   ├── components        # * React components
 │   │   ├── DevTools.js   # Development tools sidebar
 │   │   ├── Home.js       # * Container component containing the app
