@@ -51,7 +51,11 @@ describe('Note endpoints', () => {
   });
 
   describe('POST /notes', () => {
-    const newNoteAttrs = { title: 'Mow the lawn', content: 'Front and back.' };
+    const newNoteAttrs = {
+      title: 'Mow the lawn',
+      content: 'Front and back.',
+      notebookId: 2
+    };
 
     it('creates a new note', done => {
       // Send a request
@@ -143,7 +147,11 @@ describe('Note endpoints', () => {
   });
 
   describe('PUT /notes/:noteId', () => {
-    const updatedNoteAttrs = { title: 'Impossible machine', content: 'Still impossible.' };
+    const updatedNoteAttrs = {
+      title: 'Impossible machine',
+      content: 'Still impossible.',
+      notebookId: 2
+    };
 
     it('updates the note', done => {
       // Send a request
