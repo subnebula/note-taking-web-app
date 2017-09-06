@@ -1,4 +1,4 @@
-# CSE2WDC Assignment - Neverwrote
+# CSE2WDC/CSE5WDC Assignment - Neverwrote
 
 This repository contains a template which should form the foundation of your
 assignment.
