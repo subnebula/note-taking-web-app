@@ -146,6 +146,10 @@ describe('Notebook endpoints', () => {
           expect(queryResponse[0]).toEqual([]);
         });
 
+        mockDatabase.db.query('SELECT * FROM Notes WHERE notebookId = 1').then(queryResponse => {
+          expect(queryResponse[0]).toEqual([]);
+        });
+
         done();
       });
     });

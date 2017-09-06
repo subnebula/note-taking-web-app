@@ -1,7 +1,3 @@
-// Turn off Bluebird's forgotten return warnings as Jasmine causes them to spam
-// the output while running tests
-process.env.BLUEBIRD_W_FORGOTTEN_RETURN = 0;
-
 const Promise = require('bluebird');
 
 const SequelizeMocking = require('sequelize-mocking').SequelizeMocking;
@@ -20,9 +16,15 @@ mockDatabase.mock = (originalDb, fixturePaths) => {
     .then(mocked => { mockDatabase.db = mocked; });
 };
 
-mockDatabase.unmock = () =>
-  mockDatabase.db.getQueryInterface()
-    .dropAllTables({ logging: false })
+mockDatabase.unmock = () => {
+  // If we don't have a mocked database on record, resolve early
+  if(!mockDatabase.db) {
+    return Promise.resolve();
+  }
+
+  return Promise.resolve(mockDatabase.db)
+    .then(model => model.getQueryInterface())
+    .then(qi => qi.dropAllTables({ logging: false }))
     .then(() => {
       SequelizeMocking.unhookNewModel(mockDatabase.db);
 
@@ -31,16 +33,25 @@ mockDatabase.unmock = () =>
           mockDatabase.db, mockDatabase.db.__originalSequelize);
         delete mockDatabase.db.__originalSequelize;
       }
+      delete mockDatabase.db;
     })
-;
+};
 
 mockDatabase.useWithJasmine = (originalDb, fixturePath) => {
   beforeEach(done => {
-    mockDatabase.mock(originalDb, fixturePath).catch(console.error).then(done);
+    mockDatabase.mock(originalDb, fixturePath).catch((err) => {
+      try {
+        done.fail(err.message);
+      } catch(ex) {}
+    }).then(done);
   });
 
   afterEach(done => {
-    mockDatabase.unmock().catch(console.error).then(done);
+    mockDatabase.unmock().catch((err) => {
+      try {
+        done.fail(err.message);
+      } catch(ex) {}
+    }).then(done);
   });
 };
 

@@ -39,7 +39,7 @@ server is already correctly configured, as are all of the Docker-related things,
 so there is no need to modify those.
 
 Below are more detailed descriptions of the `api/` and `frontend/` directories.
-Locations that you will be modifying/adding to as you develop are marked with
+Locations that you will be mainly focussing on as you develop are marked with
 an asterisk (*).
 
 ### Backend API (`api/`)
