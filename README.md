@@ -5,10 +5,8 @@ assignment.
 
 ## Getting started
 
-1. Create a private fork of this repository
+1. Create a private fork of this repository on Bitbucket
 2. Clone your fork of the repository and start coding
-3. Copy `env/mysql.env.example` to `env/mysql.env` and change the database
-   password in the file
 
 ## Command reference
 
@@ -18,11 +16,17 @@ assignment.
 $ docker-compose run --rm api jasmine
 ```
 
-### Start everything
+After you have finished the backend, all of the tests should pass.
+
+### Start the servers
 
 ```sh
 $ docker-compose up
 ```
+
+You will then be able to view the web app at http://localhost/.
+Note that the web page will be blank for now since you haven't added anything
+to the frontend yet!
 
 ### Watch files and automatically bundle
 
