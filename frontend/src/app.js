@@ -16,8 +16,7 @@ const express = require('express');
 const app = express();
 
 // Serve up our static assets from 'dist/'
-app.use('/assets', express.static(path.join(__dirname,
-        '..', 'dist')));
+app.use('/assets', express.static(path.join(__dirname, '..', 'dist')));
 
 // Serve up font-awesome fonts from vendor folder
 app.use('/assets/font-awesome/fonts', express.static(
