@@ -1,7 +1,7 @@
 /**
- * The Home component contains the bulk of the user interface. Other React
- * components for viewing notes and notebooks are nested beneath the Home
- * component.
+ * This file contains the Home component.
+ * Other React components for viewing notes and notebooks should be nested
+ * beneath the Home component.
  */
 
 const React = require('react');
@@ -13,18 +13,14 @@ const NotebookList = require('./NotebookList');
   You should remove the placeholder text and modify the component as you see
   fit while working on the assignment.
 */
-class Home extends React.Component {
-  render() {
-    return (
-      <div className="container">
-        <h1>Neverwrote</h1>
-        <p>
-          This placeholder text was rendered by the <code>Home</code> component.
-        </p>
-        <NotebookList />
-      </div>
-    );
-  }
-}
+const Home = () => (
+  <div className="container">
+    <h1>Neverwrote</h1>
+    <p>
+      This placeholder text was rendered by the <code>Home</code> component.
+    </p>
+    <NotebookList />
+  </div>
+);
 
 module.exports = Home;

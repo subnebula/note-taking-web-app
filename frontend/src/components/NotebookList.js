@@ -29,10 +29,10 @@ class NotebookList extends React.Component {
       </div>
     );
   }
-};
+}
 
 const NotebookListContainer = ReactRedux.connect(
-  (state) => ({
+  state => ({
     notebooks: state.notebooks
   }),
   createActionDispatchers(notebooksActionCreators)

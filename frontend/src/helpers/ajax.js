@@ -3,13 +3,11 @@
  * It will work on both the backend and the frontend.
  */
 
-const Promise = require('pinkie-promise');
-
 const ajax = {};
 
 if(process.env.IN_BROWSER) {
   ajax.request = opts => new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest;
+    const xhr = new XMLHttpRequest();
     xhr.addEventListener('error', () => {
       reject(new Error('Request failed'));
     });
