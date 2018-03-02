@@ -5,8 +5,8 @@ const notes = require('../controllers/notes');
 const routes = {};
 
 // Connect our controllers to specific base paths.
-// For example, actions defined in our notebooks controller should be available at
-// paths beginning with /notebooks.
+// For example, actions defined in our notebooks controller should be available
+// at paths beginning with /notebooks.
 routes.connect = (app) => {
   // Use the index controller for /
   app.use('/', index);

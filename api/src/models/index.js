@@ -4,18 +4,27 @@ const Sequelize = require('sequelize');
 const dbConfig = require('../config/database');
 
 // Connect Sequelize to the database
-const sequelize = new Sequelize(dbConfig.database, dbConfig.user,
-  dbConfig.password, dbConfig);
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.user,
+  dbConfig.password,
+  dbConfig
+);
 
 // Load all of our model definitions
 const models = {
-  /* *** TODO: Import your models here *** */
-  // eg. `Note: sequelize.import(require.resolve('./note'))` if you have a model in models/note.js
+  Note: sequelize.import(require.resolve('./note')),
+  Notebook: sequelize.import(require.resolve('./notebook'))
 };
 
-/* *** TODO: Set up Sequelize associations here *** */
+// Run all associations
+models.Notebook.hasMany(models.Note, {
+  foreignKey: 'notebookId',
+});
+models.Note.belongsTo(models.Notebook, {
+  foreignKey: 'notebookId'
+});
 
-// Store the database connection (used in tests)
 models.database = sequelize;
 
 // Export our model definitions
