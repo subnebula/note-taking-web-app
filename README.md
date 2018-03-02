@@ -1,4 +1,4 @@
-# CSE2WDC/CSE5WDC Assignment - Neverwrote
+# CSE2WDC/CSE5WDC Assignment: Neverwrote
 
 This repository contains a template which should form the foundation of your
 assignment.
@@ -62,10 +62,9 @@ api
 │   │   ├── index.js      # The index route
 │   │   ├── notebooks.js  # * API endpoints starting with /notebooks
 │   │   └── notes.js      # * API endpoints starting with /notes
-│   ├── migrations        # * Sequelize migrations
-│   ├── models            # * Sequelize models
-│   │   └── index.js      # * Loads and associates models
-│   ├── seeders           # * Sequelize seeders (optional, but useful)
+│   ├── migrations        # Sequelize migrations
+│   ├── models            # Sequelize models
+│   ├── seeders           # Sequelize seeders
 │   └── server.js         # Server-side entry point
 └── start.sh              # Script for starting the server
 ```
@@ -84,6 +83,7 @@ frontend
 │   │   ├── DevTools.js   # Development tools sidebar
 │   │   ├── Home.js       # * Container component containing the app
 │   │   ├── MarkdownEditor.js           # Markdown editor component
+│   │   ├── NotebookList.js             # * Component for listing notebooks
 │   │   └── Root.js       # Root component
 │   ├── helpers
 │   │   ├── ajax.js       # HTTP request functions used by api.js
@@ -91,7 +91,8 @@ frontend
 │   │   ├── createActionDispatchers.js  # Used to create action dispatchers
 │   │   └── createStore.js              # Used to create the Redux store
 │   ├── reducers          # * Redux reducers
-│   │   └── index.js      # * Loads and combines reducers
+│   │   ├── index.js      # * Loads and combines reducers
+│   │   └── notebooks.js  # * The reducer for dealing with notebook data
 │   ├── server.js         # Server-side entry point
 │   └── styles
 │       └── main.css      # * Custom CSS styles
