@@ -47,4 +47,10 @@ router.put('/:noteId', (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
+// Use tis instead
+/* models.Post.findById(req.params.postId)
+    .then(post => post.update(postFilter(req.body)))
+    .then(post => res.json(post))
+    .catch(err => res.status(422).json({ error: err.message }));*/
+
 module.exports = router;
