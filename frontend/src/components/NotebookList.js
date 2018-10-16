@@ -5,6 +5,7 @@ const createActionDispatchers = require('../helpers/createActionDispatchers');
 const notebooksActionCreators = require('../reducers/notebooks');
 
 const Notebook = require('./Notebook')
+const ActiveNotebook = require('./ActiveNotebook')
 
 /*
   *** TODO: Build more functionality into the NotebookList component ***
@@ -17,6 +18,15 @@ class NotebookList extends React.Component {
 
   render() {
     const createNotebookListItem = (notebook) => {
+      if(notebook.id === this.props.activeNotebookId){
+        return (
+          <ActiveNotebook
+            key = {notebook.id}
+            notebook = {notebook}
+            notes = {this.props.notes}
+          />
+        );
+      }
       return (
         <Notebook
           key = {notebook.id}

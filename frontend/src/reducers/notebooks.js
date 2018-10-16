@@ -3,7 +3,7 @@ const api = require('../helpers/api');
 
 // Action type constants
 /* *** TODO: Put action constants here *** */
-const UPDATE = 'notebooks/UPDATE';
+const UPDATE = 'notes/UPDATE';
 
 const initialState = {
   data: [

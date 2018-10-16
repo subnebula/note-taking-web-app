@@ -48,9 +48,10 @@ router.put('/:noteId', (req, res) => {
 });
 
 // Use this instead
-/* models.Post.findById(req.params.postId)
-    .then(post => post.update(postFilter(req.body)))
-    .then(post => res.json(post))
-    .catch(err => res.status(422).json({ error: err.message }));*/
-
+/*router.put('/:noteId', (req, res) => {
+  models.Note.findById(req.params.noteId)
+    .then(note => note.update(postFilter(req.body.content, req.body.notebookId)))
+    .then(note => res.json(note))
+    .catch(err => res.status(422).json({ error: err.message }));
+});*/
 module.exports = router;
