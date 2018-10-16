@@ -4,21 +4,27 @@ const ReactRedux = require('react-redux');
 const createActionDispatchers = require('../helpers/createActionDispatchers');
 const notebooksActionCreators = require('../reducers/notebooks');
 
+const Notebook = require('./Notebook')
+
 /*
   *** TODO: Build more functionality into the NotebookList component ***
   At the moment, the NotebookList component simply renders the notebooks
   as a plain list containing their titles. This code is just a starting point,
   you will need to build upon it in order to complete the assignment.
 */
+
 class NotebookList extends React.Component {
+
   render() {
     const createNotebookListItem = (notebook) => {
       return (
-        <li key={notebook.id}>
-          {notebook.title}
-        </li>
-      )
-    }
+        <Notebook
+          key = {notebook.id}
+          notebook = {notebook}
+          loadNotes = {this.props.loadNotes}
+        />
+      );
+    };
 
     return (
       <div>

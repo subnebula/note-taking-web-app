@@ -19,7 +19,7 @@ const Home = () => (
     <p>
       This placeholder text was rendered by the <code>Home</code> component.
     </p>
-    <NotebookList />
+    <NotebookList/>
   </div>
 );
 

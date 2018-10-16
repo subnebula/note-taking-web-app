@@ -12,6 +12,13 @@
 const path = require('path');
 const express = require('express');
 const Youch = require('youch');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
+
+const api = require('./helpers/api');
+const createStore = require('./helpers/createStore');
+const Root = React.createFactory(require('./components/Root'));
+const combinedReducers = require('./reducers');
 
 // Create a new Express app
 const app = express();
@@ -24,27 +31,40 @@ app.use('/assets/font-awesome/fonts', express.static(
   path.dirname(require.resolve('font-awesome/fonts/FontAwesome.otf'))));
 
 // Set up the index route
-app.get('/', (req, res) => {
-  const htmlDocument = `<!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+app.get('/', (req, res, next) => {
 
-        <title>Neverwrote</title>
-        <link rel="stylesheet" type="text/css" href="/assets/css/app.css">
-        <script src="/assets/js/vendor.js"></script>
-        <script src="/assets/js/app.js"></script>
-      </head>
-      <body>
-        <div id="root"></div>
-        <script>main();</script>
-      </body>
-    </html>`;
+  api.get('/notebooks').then((notebooks) => {
 
-  // Respond with the complete HTML page
-  res.send(htmlDocument);
+    const initialState = combinedReducers();
+    initialState.notebooks.data = notebooks;
+    const initialStateString =
+      JSON.stringify(initialState).replace(/<\//g, "<\\/");
+
+    const store = createStore(initialState);
+    const rootComponent = Root({store});
+    const reactHTML = ReactDOMServer.renderToString(rootComponent);
+
+    const htmlDocument = `<!DOCTYPE html>
+      <html lang="en">
+        <head>
+         <meta charset="utf-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+
+          <title>Neverwrote</title>
+          <link rel="stylesheet" type="text/css" href="/assets/css/app.css">
+          <script src="/assets/js/vendor.js"></script>
+          <script src="/assets/js/app.js"></script>
+        </head>
+        <body>
+          <div id="root">${reactHTML}</div>
+          <script>main(${initialStateString});</script>
+        </body>
+      </html>`;
+
+    // Respond with the complete HTML page
+    res.send(htmlDocument);
+  }).catch(next);
 });
 
 // Catch-all for handling errors.
