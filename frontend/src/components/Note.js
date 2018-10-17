@@ -1,6 +1,6 @@
 const React = require('react');
 
-class ActiveNotebook extends React.Component {
+class Note extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -20,4 +20,4 @@ class ActiveNotebook extends React.Component {
   }
 }
 
-module.exports = ActiveNotebook;
+module.exports = Note;
