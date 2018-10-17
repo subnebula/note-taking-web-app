@@ -7,12 +7,6 @@ const NoteView = (props) => {
       {props.note.title}
     </a>
   </li>
-      <ol>
-        {props.notes.map(note =>
-          <li key={note.id}>
-            {note.title}
-          </li>)}
-      </ol>
     );
 }
 
