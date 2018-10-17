@@ -6,10 +6,15 @@ class ActiveNotebook extends React.Component {
   }
 
   render () {
+    const onClickNote = (event) => {
+      event.preventDefault();
+      this.props.loadNote(this.props.note.id);
+    };
+
     return (
-      <ActiveNotebookView
-        notebook={this.props.notebook}
+      <NoteView
         notes={this.prop.notes}
+        onClickNote={onClickNotebook}
       />
     );
   }

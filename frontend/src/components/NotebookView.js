@@ -2,11 +2,11 @@ const React = require('react');
 
 const NotebookView = (props) => {
   return (
-    <div className="blog-post">
+    <li className="notebook">
       <a href="#" onClick={props.onClickNotebook}>
         {props.notebook.title}
       </a>
-    </div>
+    </li>
   );
 };
 
