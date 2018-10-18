@@ -12,10 +12,11 @@ class Note extends React.Component {
     };
 
     return (
-      <NoteView
-        notes={this.prop.notes}
-        onClickNote={onClickNotebook}
-      />
+      <li class='note'>
+        <a href="#" onClick={onClickNote}>
+          {this.props.note.title}
+        </a>
+      </li>
     );
   }
 }

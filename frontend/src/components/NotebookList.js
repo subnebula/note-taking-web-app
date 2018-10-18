@@ -19,12 +19,17 @@ class NotebookList extends React.Component {
 
   render() {
     const createNotebookListItem = (notebook) => {
+      if(notebook.id === this.props.activeAlbumId) {
+      return <NoteList
+        key = {notebook.id}
+        notebook = {notebook}
+        notes = {this.props.notes} />;
+      }
       return (
         <Notebook
           key = {notebook.id}
           notebook = {notebook}
-          loadNotes = {this.props.loadNotes}
-        />
+          loadNotes = {this.props.loadNotes} />
       );
     };
 
@@ -34,10 +39,6 @@ class NotebookList extends React.Component {
         <ul>
           {this.props.notebooks.data.map(createNotebookListItem)}
         </ul>
-        <NoteList
-        activeNotebookId = {this.props.activeNotebookId}
-        notes = {this.props.notes}
-        />
       </div>
     );
   }

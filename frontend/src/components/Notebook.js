@@ -1,9 +1,7 @@
 const React = require('react');
 
-const NotebookView = require('./NotebookView')
-
 class Notebook extends React.Component {
-  constructor(props) {
+constructor(props) {
     super(props);
   }
 
@@ -14,10 +12,11 @@ class Notebook extends React.Component {
     };
 
     return (
-      <NotebookView
-        notebook={this.props.notebook}
-        onClickNotebook={onClickNotebook}
-      />
+    <li className="notebook">
+      <a href="#" onClick={onClickNotebook}>
+        {this.props.notebook.title}
+      </a>
+    </li>
     );
   }
 }

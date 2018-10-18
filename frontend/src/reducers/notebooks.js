@@ -27,10 +27,10 @@ function reducer(state, action) {
         { activeNotebookId: action.notebookId, notes: action.notes }
       );
     }
-
-    default: return state;
-
   }
+    return state;
+
+
 }
 
 // Action creators

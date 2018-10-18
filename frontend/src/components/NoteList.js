@@ -18,7 +18,15 @@ class NoteList extends React.Component {
       );
     }
 
-    if(this.props.activeNotebookId !== undefined){
+    return (
+    	<li>
+         {this.props.notebook.title}
+         <ol>
+           {this.props.notes.map(createNoteListItem)}
+         </ol>
+      </li>
+    );
+/*    if(this.props.activeNotebookId !== undefined){
       return (
         <div>
           <h2>Notes</h2>
@@ -28,7 +36,7 @@ class NoteList extends React.Component {
         </div>
       );
     }
-    return null;
+    return null;*/
   }
 }
 
