@@ -17,21 +17,24 @@ class NoteList extends React.Component {
       );
     }
 
+    if (this.props.notes.notebookId === -1) {
+      return null;
+    }
+
     return (
-    	<li>
-         {this.props.notebook.title}
-         <ol>
-           {this.props.notes.map(createNoteListItem)}
-         </ol>
-      </li>
+      <div>
+        <h2>Notes</h2>
+        <ul>
+          {this.props.notes.data.map(createNoteListItem)}
+        </ul>
+      </div>
     );
   }
 }
 
 const NoteListContainer = ReactRedux.connect(
   state => ({
-    activeNoteId: state.activeNoteId,
-    note: state.note
+    notes: state.notes
   }),
   createActionDispatchers(notesActionCreators)
 )(NoteList);

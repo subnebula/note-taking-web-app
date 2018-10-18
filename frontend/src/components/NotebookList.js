@@ -3,6 +3,7 @@ const ReactRedux = require('react-redux');
 
 const createActionDispatchers = require('../helpers/createActionDispatchers');
 const notebooksActionCreators = require('../reducers/notebooks');
+const notesActionCreators = require('../reducers/notes')
 
 const Notebook = require('./Notebook')
 const NoteList = require('./NoteList')
@@ -42,7 +43,7 @@ const NotebookListContainer = ReactRedux.connect(
   state => ({
     notebooks: state.notebooks,
   }),
-  createActionDispatchers(notebooksActionCreators)
+  createActionDispatchers(notebooksActionCreators, notesActionCreators)
 )(NotebookList);
 
 module.exports = NotebookListContainer;

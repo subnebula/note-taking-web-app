@@ -21,7 +21,7 @@ const Home = () => (
       This placeholder text was rendered by the <code>Home</code> component.
     </p>
     <NotebookList/>
-
+    <NoteList/>
   </div>
 );
 
