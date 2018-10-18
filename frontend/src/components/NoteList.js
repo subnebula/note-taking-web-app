@@ -13,7 +13,6 @@ class NoteList extends React.Component {
         <Note
           key = {note.id}
           note = {note}
-          loadNote = {this.props.loadNote}
         />
       );
     }
@@ -26,23 +25,11 @@ class NoteList extends React.Component {
          </ol>
       </li>
     );
-/*    if(this.props.activeNotebookId !== undefined){
-      return (
-        <div>
-          <h2>Notes</h2>
-          <ul>
-            {this.props.notes.map(createNoteListItem)}
-          </ul>
-        </div>
-      );
-    }
-    return null;*/
   }
 }
 
 const NoteListContainer = ReactRedux.connect(
   state => ({
-    notes: state.notes,
     activeNoteId: state.activeNoteId,
     note: state.note
   }),

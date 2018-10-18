@@ -13,7 +13,7 @@ constructor(props) {
 
     return (
     <li className="notebook">
-      <a href="#" onClick={onClickNotebook}>
+      <a onClick={onClickNotebook} role={"button"}>
         {this.props.notebook.title}
       </a>
     </li>

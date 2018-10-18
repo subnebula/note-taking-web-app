@@ -19,12 +19,6 @@ class NotebookList extends React.Component {
 
   render() {
     const createNotebookListItem = (notebook) => {
-      if(notebook.id === this.props.activeAlbumId) {
-      return <NoteList
-        key = {notebook.id}
-        notebook = {notebook}
-        notes = {this.props.notes} />;
-      }
       return (
         <Notebook
           key = {notebook.id}
@@ -47,8 +41,6 @@ class NotebookList extends React.Component {
 const NotebookListContainer = ReactRedux.connect(
   state => ({
     notebooks: state.notebooks,
-    activeNotebookId: state.activeNotebookId,
-    notes: state.notes
   }),
   createActionDispatchers(notebooksActionCreators)
 )(NotebookList);

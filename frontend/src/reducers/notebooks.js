@@ -3,13 +3,14 @@ const api = require('../helpers/api');
 
 // Action type constants
 /* *** TODO: Put action constants here *** */
-const UPDATE = 'notes/UPDATE';
+const SHOW_NOTES = 'notes/show_notes';
 
 const initialState = {
   data: [
     { id: 100, title: 'From Redux Store: A hard-coded notebook' },
     { id: 101, title: 'From Redux Store: Another hard-coded notebook' },
-  ]
+  ],
+  notebookId: -1
 };
 
 // Function which takes the current data state and an action,
@@ -20,12 +21,11 @@ function reducer(state, action) {
 
   switch(action.type) {
     /* *** TODO: Put per-action code here *** */
-    case UPDATE: {
-      return _.assign(
-        {},
-        state,
-        { activeNotebookId: action.notebookId, notes: action.notes }
-      );
+    case SHOW_NOTES: {
+      return _.assign({}, state,
+      {   notebookId: action.notebookId,
+          notes: action.notes
+      });
     }
   }
     return state;
@@ -39,7 +39,7 @@ function reducer(state, action) {
 reducer.loadNotes = (notebookId) => {
   return (dispatch) => {
     api.get('/notebooks/' + notebookId + '/notes').then((notes) => {
-      dispatch({ type: UPDATE, notebookId, notes })
+      dispatch({ type: SHOW_NOTES, notebookId: notebookId, notes: notes })
     });
   };
 };

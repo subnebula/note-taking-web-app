@@ -6,14 +6,13 @@ class Note extends React.Component {
   }
 
   render () {
-    const onClickNote = (event) => {
-      event.preventDefault();
-      this.props.loadNote(this.props.note.id);
+    const toggleContent = (event) => {
+      this.setState({showContent: !this.state.showContent});
     };
 
     return (
       <li class='note'>
-        <a href="#" onClick={onClickNote}>
+        <a onClick={toggleContent}>
           {this.props.note.title}
         </a>
       </li>
