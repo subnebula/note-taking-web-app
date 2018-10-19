@@ -17,7 +17,9 @@ constructor(props) {
 
     return (
     <li className="notebook">
-      <button onClick={deleteNotebook}>X</button>
+      <button className="btn btn-danger btn-xs" onClick={deleteNotebook}>
+        <i className="fa fa-remove"/>
+      </button>
       <a onClick={onClickNotebook} role={"button"}>
         {this.props.notebook.title}
       </a>

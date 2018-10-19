@@ -21,7 +21,9 @@ class Note extends React.Component {
     }
     return (
       <li>
-        <button onClick={deleteNote}>X</button>
+        <button className="btn btn-danger btn-xs" onClick={deleteNote}>
+        <i className="fa fa-remove"/>
+      </button>
         <a onClick={toggleContent} role="button">
           {this.props.note.title}
         </a>
