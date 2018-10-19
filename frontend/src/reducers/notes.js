@@ -4,6 +4,8 @@ const api = require('../helpers/api');
 // Action type constants
 /* *** TODO: Put action constants here *** */
 const SHOW_NOTES = 'notes/SHOW_NOTES';
+const REMOVE = 'notes/REMOVE';
+const HIDE_NOTES = 'notes/HIDE_NOTES';
 
 const initialState = {
   data: [],
@@ -26,14 +28,33 @@ function reducer(state, action) {
         notebookId: action.notebookId
       });
     }
+
+    case HIDE_NOTES: {
+      if (action.notebookId !== state.notebookId){
+        return state;
+      }
+
+      return _.assign({}, state, {
+        data: [],
+        notebookId: -1
+      });
+    }
+
+    case REMOVE: {
+      const data = _.reject(state.data, {id: action.id});
+      return _.assign({}, state, {data});
+    }
+
+    default: return state;
   }
-    return state;
-
-
 }
 
 // Action creators
 /* *** TODO: Put action creators here *** */
+
+reducer.removeNote = (id) => {
+  return {type: REMOVE, id}
+}
 
 reducer.loadNotes = (notebookId) => {
   return (dispatch) => {
@@ -44,6 +65,22 @@ reducer.loadNotes = (notebookId) => {
     });
   };
 };
+
+reducer.unloadNotes = (notebookId) => {
+  return {type: HIDE_NOTES, notebookId}
+}
+
+reducer.deleteNote = (noteId) => {
+  return (dispatch) => {
+    api.delete('/notes/' + noteId).then(() => {
+      dispatch(reducer.removeNote(noteId));
+    }).catch((err) => {
+      console.error(err);
+    });
+  };
+}
+
+
 
 // Export the action creators and reducer
 module.exports = reducer;

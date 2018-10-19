@@ -24,7 +24,8 @@ class NotebookList extends React.Component {
         <Notebook
           key = {notebook.id}
           notebook = {notebook}
-          loadNotes = {this.props.loadNotes} />
+          loadNotes = {this.props.loadNotes}
+          deleteNotebook = {this.props.deleteNotebook}/>
       );
     };
 

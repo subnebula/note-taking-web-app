@@ -7,7 +7,6 @@ constructor(props) {
 
   render() {
     const onClickNotebook = (event) => {
-      //event.preventDefault();
       this.props.loadNotes(this.props.notebook.id);
     };
 
