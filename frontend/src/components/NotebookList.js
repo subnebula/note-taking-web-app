@@ -7,6 +7,7 @@ const notesActionCreators = require('../reducers/notes')
 
 const Notebook = require('./Notebook')
 const NoteList = require('./NoteList')
+const NotebookNew = require('./NotebookNew')
 
 
 /*
@@ -21,11 +22,14 @@ class NotebookList extends React.Component {
   render() {
     const createNotebookListItem = (notebook) => {
       return (
+        <div>
+        <NotebookNew/>
         <Notebook
           key = {notebook.id}
           notebook = {notebook}
           loadNotes = {this.props.loadNotes}
           deleteNotebook = {this.props.deleteNotebook}/>
+        </div>
       );
     };
 
