@@ -42,7 +42,7 @@ function reducer(state, action) {
     };
 
     case REMOVE: {
-      const data = _.reject(state.data, {id: action.id});
+      const data = _.reject(state.data, {id: action.noteId});
       return _.assign({}, state, {data});
     };
 
@@ -60,8 +60,8 @@ function reducer(state, action) {
 // Action creators
 /* *** TODO: Put action creators here *** */
 
-reducer.removeNote = (id) => {
-  return {type: REMOVE, id}
+reducer.removeNote = (noteId) => {
+  return {type: REMOVE, noteId}
 }
 
 reducer.loadNotes = (notebookId) => {

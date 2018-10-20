@@ -29,7 +29,7 @@ function reducer(state, action) {
 
       // Remove deleted notebook from current list of notebooks
       // Then return updated list of notebooks
-      const data = _.reject(state.data, {id: action.id});
+      const data = _.reject(state.data, {id: action.notebookId});
       return _.assign({}, state, {data});
     }
 

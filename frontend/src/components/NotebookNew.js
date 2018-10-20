@@ -18,9 +18,8 @@ constructor(props) {
     };
 
     const createNotebook = (newNotebook) => {
-      this.props.createNotebook(newNotebook, (err) => {
-        if(!err) closeEdit();
-      });
+      this.props.createNotebook(newNotebook)
+      closeEdit();
     };
 
     if(this.state.editing) {

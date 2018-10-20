@@ -18,7 +18,7 @@ const Home = () => (
   <div className="container">
     <h1>Neverwrote</h1>
     <p>
-      This placeholder text was rendered by the <code>Home</code> component.
+      Wow! A place that I can write all my notes down. And it has noteboooks too!
     </p>
     <NotebookList/>
     <NoteList/>
