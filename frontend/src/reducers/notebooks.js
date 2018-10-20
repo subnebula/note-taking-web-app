@@ -62,11 +62,10 @@ reducer.deleteNotebook = (notebookId) => {
   };
 };
 
-reducer.createNotebook = (newNotebook, callback) => {
+reducer.createNotebook = (newNotebook) => {
   return (dispatch) => {
     api.post('/notebooks', newNotebook).then((notebook) => {
       dispatch(reducer.insertNotebook([notebook]));
-      callback();
     }).catch((err) => {
       console.error(err);
     });

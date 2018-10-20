@@ -1,29 +1,32 @@
 const React = require('react');
-const _ = require('lodash');
 
-class NotebookEdit extends React.Component {
+const MarkdownEditior = require('./MarkdownEditor')
+
+class NoteEdit extends React.Component {
 constructor(props) {
     super(props);
-    const notebook = props.notebook || {};
 
     this.state = {
-      title: notebook.title || ''
+      title: '',
+      content: ''
     };
   }
 
   render() {
-    // Function to cancel notebook creation
+    // Function to cancel note creation
     const revertAndStopEditing = (event) => {
+      event.preventDefault();
       this.props.onCancel();
     };
 
     // Fucntion to save notebook
     const submitAndStopEditing = (event) => {
-      //create an object to send to redux store
-      const newNotebook = _.assign({}, this.props.notebook, {
-        title: this.state.title
+
+      //sent title and content to NoteNew
+      this.props.onSave({
+        title: this.state.title,
+        content: this.state.content
       });
-      this.props.onSave(newNotebook);
     };
 
     // Function to set state.title to content of input field
@@ -31,11 +34,21 @@ constructor(props) {
       this.setState({ title: event.target.value });
     };
 
+    // Function to set state.content to content of input field
+    const onContentChange = (event) => {
+      this.setState({ content: event.target.value });
+    };
+
     return(
       <div>
         {/* Title field */}
         <input className="form-control" value={this.state.title}
           placeholder="Notebook title..." onChange={onTitleChange}
+        />
+        {/* Markdown editor for note content*/}
+        <MarkdownEditior
+          value={this.state.content}
+          onChange={onContentChange}
         />
         <span>
         {/* Save button */}
@@ -55,4 +68,4 @@ constructor(props) {
   }
 }
 
-module.exports = NotebookEdit;
+module.exports = NoteEdit;
