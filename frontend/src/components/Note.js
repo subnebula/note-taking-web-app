@@ -25,7 +25,7 @@ class Note extends React.Component {
         <i className="fa fa-remove"/>
       </button>
         <a onClick={toggleContent} role="button">
-          {this.props.note.title}
+          &nbsp;{this.props.note.title}
         </a>
         {content}
       </li>

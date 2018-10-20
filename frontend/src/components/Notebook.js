@@ -20,7 +20,7 @@ constructor(props) {
         <i className="fa fa-remove"/>
       </button>
       <a onClick={onClickNotebook} role={"button"}>
-        {this.props.notebook.title}
+        &nbsp;{this.props.notebook.title}
       </a>
     </li>
     );

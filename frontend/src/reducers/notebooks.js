@@ -7,6 +7,7 @@ const notesActionCreators = require('./notes');
 /* *** TODO: Put action constants here *** */
 
 const REMOVE = 'notebooks/REMOVE';
+const INSERT = 'notebooks/INSERT';
 
 const initialState = {
   data: [
@@ -23,8 +24,20 @@ function reducer(state, action) {
 
   switch(action.type) {
     /* *** TODO: Put per-action code here *** */
-      case REMOVE: {
+
+    case REMOVE: {
+
+      // Remove deleted notebook from current list of notebooks
+      // Then return updated list of notebooks
       const data = _.reject(state.data, {id: action.id});
+      return _.assign({}, state, {data});
+    }
+
+    case INSERT: {
+
+      // Combine existing notebooks with new notebook
+      // Then return updated list of notebooks
+      const data = _.concat(state.data, action.notebook);
       return _.assign({}, state, {data});
     }
 
@@ -36,8 +49,8 @@ function reducer(state, action) {
 // Action creators
 /* *** TODO: Put action creators here *** */
 
-reducer.removeNotebook = (id) => {
-  return {type: REMOVE, id}
+reducer.removeNotebook = (notebookId) => {
+  return {type: REMOVE, notebookId}
 }
 
 reducer.deleteNotebook = (notebookId) => {
@@ -47,7 +60,22 @@ reducer.deleteNotebook = (notebookId) => {
       dispatch(notesActionCreators.unloadNotes(notebookId));
     })
   };
-}
+};
+
+reducer.createNotebook = (newNotebook, callback) => {
+  return (dispatch) => {
+    api.post('/notebooks', newNotebook).then((notebook) => {
+      dispatch(reducer.insertNotebook([notebook]));
+      callback();
+    }).catch((err) => {
+      console.error(err);
+    });
+  };
+};
+
+reducer.insertNotebook = (notebook) => {
+  return {type: INSERT, notebook};
+};
 
 // Export the action creators and reducer
 module.exports = reducer;

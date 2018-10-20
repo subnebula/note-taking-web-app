@@ -22,23 +22,27 @@ class NotebookList extends React.Component {
   render() {
     const createNotebookListItem = (notebook) => {
       return (
-        <div>
-        <NotebookNew/>
         <Notebook
           key = {notebook.id}
           notebook = {notebook}
           loadNotes = {this.props.loadNotes}
           deleteNotebook = {this.props.deleteNotebook}/>
-        </div>
       );
     };
 
     return (
       <div>
         <h2>Notebooks</h2>
-        <ul>
-          {this.props.notebooks.data.map(createNotebookListItem)}
-        </ul>
+        <div>
+          <NotebookNew
+            createNotebook={this.props.createNotebook}
+          />
+        </div>
+        <div>
+          <ul>
+            {this.props.notebooks.data.map(createNotebookListItem)}
+          </ul>
+        </div>
       </div>
     );
   }
